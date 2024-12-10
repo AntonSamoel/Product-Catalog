@@ -11,12 +11,13 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "id", "width": "5%" },
-            { "data": "name", "width": "15%" },
-            { "data": "creationDate", "width": "15%" },
-            { "data": "startDate", "width": "15%" },
-            { "data": "durationInDays", "width": "15%" },
-            { "data": "price", "width": "10%" },
-            { "data": "category.name", "width": "15%" },
+            { "data": "name", "width": "5%" },
+            { "data": "creationDate", "width": "5%" },
+            { "data": "startDate", "width": "5%" },
+            { "data": "durationInDays", "width": "5%" },
+            { "data": "userId", "width": "5%" },
+            { "data": "price", "width": "5%" },
+            { "data": "category.name", "width": "5%" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -25,7 +26,7 @@ function loadDataTable() {
                 <a  href="/Admin/Product/Upsert?id=${data}" class="btn btn-secondary" > <i class="bi bi-pencil-square"></i> </br> Edit</a>
                 `
                 },
-                "width": "15%"
+                "width": "5%"
             },
             {
                 "data": "id",
@@ -34,7 +35,7 @@ function loadDataTable() {
                 <a onclick="Delete('/Admin/Product/Delete/${data}')" class="btn btn-danger"><i class="bi bi-trash3"></i> &nbsp; Delete</a>
                 `
                 },
-                "width": "15%"
+                "width": "5%"
             },
         ]
     });

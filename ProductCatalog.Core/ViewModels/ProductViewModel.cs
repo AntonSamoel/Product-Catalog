@@ -24,6 +24,10 @@ namespace ProductCatalog.Core.ViewModels
 
         [Required]
         [Display(Name = "Start Date")]
+
+        [ValidateNever]
+        public string UserId { get; set; }
+
         public DateTime StartDate { get; set; } = DateTime.Now;
         [Required]
         [Range(1, int.MaxValue,ErrorMessage ="Duration must be from 1 day and above")]

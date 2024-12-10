@@ -19,13 +19,13 @@ namespace ProductCatalog.Web.Areas.Customer.Controllers
         public async Task<IActionResult> Index()
         {
             var currentDate = DateTime.Now;
-            var activeProducts = await _unitOfWork.Products.FindAllAsync(p => currentDate >= p.StartDate && currentDate <= p.StartDate.AddDays(p.DurationInDays), new string[] { "Category" });
+            var activeProducts = await _unitOfWork.Products.FindAllAsync(p => currentDate >= p.StartDate && currentDate <= p.StartDate.AddDays(p.DurationInDays), new string[] { "Category", "ApplicationUser" });
             return View(activeProducts);
         }  
         public async Task<IActionResult> FilterByCategory(string category)
         {
             var currentDate = DateTime.Now;
-            var activeProducts = await _unitOfWork.Products.FindAllAsync(p => currentDate >= p.StartDate && currentDate <= p.StartDate.AddDays(p.DurationInDays), new string[] { "Category" });
+            var activeProducts = await _unitOfWork.Products.FindAllAsync(p => currentDate >= p.StartDate && currentDate <= p.StartDate.AddDays(p.DurationInDays), new string[] { "Category", "ApplicationUser" });
 
             if (category == "all")
                 return View("Index", activeProducts);
@@ -37,7 +37,10 @@ namespace ProductCatalog.Web.Areas.Customer.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var product = await _unitOfWork.Products.FindAsync(p=>p.Id == id,new string[] {"Category"});
+            var product = await _unitOfWork.Products.FindAsync(p=>p.Id == id,new string[] {"Category", "ApplicationUser" });
+
+            if(product is null)
+                return View("NotFound");
             return View(product);
         }
 

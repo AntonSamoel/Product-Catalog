@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ProductCatalog.Core.Models
@@ -17,8 +20,12 @@ namespace ProductCatalog.Core.Models
 
         public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 
-        //[Required] // Will get it using identity 
-        //public string UserId { get; set; }
+        [Required]
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        [ValidateNever]
+        [JsonIgnore]
+        public ApplicationUser ApplicationUser { get; set; }
 
         [Required]
         [Display(Name = "Start Date")]
@@ -32,6 +39,8 @@ namespace ProductCatalog.Core.Models
         // Foreign Key
         public int CategoryId { get; set; }
         public Category Category { get; set; } = default!;
+
+
 
         
     }

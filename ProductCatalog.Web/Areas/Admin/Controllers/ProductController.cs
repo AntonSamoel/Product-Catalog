@@ -7,6 +7,7 @@ using ProductCatalog.Core.Constants;
 using ProductCatalog.Core.Interfaces;
 using ProductCatalog.Core.Models;
 using ProductCatalog.Core.ViewModels;
+using System.Security.Claims;
 
 
 namespace ProductCatalog.Web.Areas.Admin.Controllers
@@ -64,6 +65,11 @@ namespace ProductCatalog.Web.Areas.Admin.Controllers
             {
                 var product = await _unitOfWork.Products.GetByIdAsync(id ?? 0);
 
+                if(product is null)
+                {
+                    return View("NotFound");
+                }
+
                 // TO BE DONE (MAPPING)
                 productVM = _mapper.Map<ProductViewModel>(product);
 
@@ -83,8 +89,12 @@ namespace ProductCatalog.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upsert(ProductViewModel productVM)
         {
-           if(ModelState.IsValid)
-           {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            productVM.UserId = userId;
+
+            if (ModelState.IsValid)
+            {
                 var product = _mapper.Map<Product>(productVM);
 
                 if (productVM.Id == 0)
@@ -100,7 +110,11 @@ namespace ProductCatalog.Web.Areas.Admin.Controllers
                     _unitOfWork.Save();
                     TempData["sucess"] = "Product Updated Successfully";
                 }
-           }
+            }
+            else
+            {
+                return View(productVM); 
+            }
 
             return RedirectToAction("Index");
         }
@@ -126,7 +140,7 @@ namespace ProductCatalog.Web.Areas.Admin.Controllers
 
             if (product is null)
             {
-                return Json(new { success = false, message = "Id NOT FOUND" });
+                return Json(new { success = false, message = "NOT FOUND" });
             }
 
             _unitOfWork.Products.Remove(product);
