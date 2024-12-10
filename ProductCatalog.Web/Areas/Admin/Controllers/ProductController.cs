@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Hosting;
+using ProductCatalog.Core.Constants;
 using ProductCatalog.Core.Interfaces;
 using ProductCatalog.Core.Models;
 using ProductCatalog.Core.ViewModels;
@@ -10,6 +12,7 @@ using ProductCatalog.Core.ViewModels;
 namespace ProductCatalog.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.Role_Admin)]
     public class ProductController : Controller
     {
         #region Fields

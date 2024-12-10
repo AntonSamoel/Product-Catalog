@@ -1,19 +1,37 @@
 ﻿@model IEnumerable<Product>
 
 
-<!-- Search Bar -->
-@{
-    ViewData["Title"] = "Home";
-}﻿
-@* <div class="row">
-    <div class="mb-3 col-4">
-        <form class="d-flex" asp-action="Search" asp-controller="Home">
-            <input class="form-control me-sm-2" type="search" placeholder="Search" name="data">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<div class="d-flex justify-content-between pt-4">
+    <div class="p-2">
+        <ul class="list-group list-group-horizontal-sm">
+            <a style="text-decoration:none;" asp-controller="Home"
+               asp-action="FilterByCategory" asp-route-category="Electronics">
+            <li class="list-group-item ">Electronics</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Home"
+               asp-action="FilterByCategory" asp-route-category="Clothing & Apparel">
+            <li class="list-group-item ">Clothing & Apparel</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Home"
+               asp-action="FilterByCategory" asp-route-category="Home Appliances">
+            <li class="list-group-item ">Home Appliances</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Home"
+               asp-action="FilterByCategory" asp-route-category="Books">
+            <li class="list-group-item ">Books</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Home"
+               asp-action="FilterByCategory" asp-route-category="Sports">
+            <li class="list-group-item">Sports</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Home"
+               asp-action="FilterByCategory" asp-route-category="all">
+            <li class="list-group-item">All</li>
+            </a>
+        </ul>
     </div>
 </div>
- *@
+
 
 
 <div class="row pb-3 mb-3 mt-4">

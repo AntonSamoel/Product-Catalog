@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProductCatalog.Web</title>
+    <title>Product Catalog</title>
 
     <link rel="stylesheet" href="~/css/bootswatchTheme.css" />
     <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
@@ -30,31 +30,21 @@
                             <a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                       @*  @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Mangement</a>
-                                <div class="dropdown-menu">
-                                    <a class="nav-link " asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
-                                    <a class="nav-link " asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Types</a>
-                                    <a class="nav-link " asp-area="Admin" asp-controller="Product" asp-action="Index">Products</a>
-                                    <a class="nav-link " asp-area="Admin" asp-controller="Company" asp-action="Index">Companies</a>
-                                    <a class="nav-link " asp-area="Identity" asp-page="/Account/Register">Create New User</a>
-
-                                </div>
+                        @* @if (User.IsInRole("Admin"))
+                        { *@
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Product" asp-action="Index">Manage Products</a>
                             </li>
-
-                        } *@
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Admin" asp-controller="Product" asp-action="Index">Manage Products</a>
-                        </li>
+                        @* } *@
+                      
 
                     </ul>
 
-                    @* <partial name="_LoginPartial" /> *@
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
+
         <!-- End -->
         
     </header>
