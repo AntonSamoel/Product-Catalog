@@ -1,0 +1,48 @@
+﻿@model Product
+
+<div class="d-flex justify-content-center align-items-center mt-5  mb-4">
+    <div class="card shadow border-0 col-12 col-md-8 col-lg-6" style="transform: scale(1.1);">
+        <div class="card-header bg-primary bg-gradient text-light py-4">
+            <div class="text-center">
+                <h3 class="text-white text-uppercase">@Model.Name</h3>
+                <p class="text-white-50 fw-semibold mb-0">by Anton Samoel</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="py-3">
+                <div class="mb-3">
+                    <a asp-action="Index" class="btn btn-outline-primary bg-gradient fw-semibold btn-sm text-uppercase">
+                        <small>Back to home</small>
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <span class="badge text-light bg-primary" style="font-size: medium; font-weight: 300;">
+                                @Model.Category!.Name
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <p class="text-secondary lh-sm">
+                                Available By: @Model.StartDate.ToString()
+                            </p>
+                        </div>
+                        <div class="mb-3">
+                            <p class="text-secondary lh-sm">
+                                Available Until: @Model.StartDate.AddDays(Model.DurationInDays).ToString()
+                            </p>
+                        </div>
+                        <div class="row text-primary fw-bold fs-5">
+                            <div class="col-auto">
+                                <div>Price &nbsp;&nbsp;&nbsp; |</div>
+                            </div>
+                            <div class="col-auto bg-white">
+                                <div>@Model.Price.ToString("c")</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
