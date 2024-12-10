@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
+using System.Text.Json.Serialization;
 
 namespace ProductCatalog.Core.Models
 {
@@ -16,6 +13,7 @@ namespace ProductCatalog.Core.Models
         [MaxLength(75)]
         public string Name { get; set; }
 
+        [JsonIgnore] // To prevent cycling while getting product and category together
         public ICollection<Product> Products { get; set; } = new List<Product>();
 
     }

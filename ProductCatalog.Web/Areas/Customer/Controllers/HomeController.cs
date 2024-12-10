@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ProductCatalog.Web.Models;
+using ProductCatalog.Core.Models;
 using System.Diagnostics;
 
 namespace ProductCatalog.Web.Areas.Customer.Controllers
