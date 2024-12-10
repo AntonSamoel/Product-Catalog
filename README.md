@@ -1,7 +1,8 @@
 # Product Management System
 
 ## Overview
-The **Product Management System** is a web-based application built using ASP.NET MVC. It allows administrators to manage products. The project uses the **Unit of Work** and **Repository Pattern** for efficient data access and clean architecture.
+The **Product Management System** is a web-based application built using ASP.NET MVC. It allows administrators to manage products. 
+The project uses the **Unit of Work** and **Repository Pattern** for efficient data access and clean architecture.
 
 ---
 
