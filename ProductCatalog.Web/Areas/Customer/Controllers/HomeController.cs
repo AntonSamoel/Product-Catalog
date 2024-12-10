@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.Core.Interfaces;
 using ProductCatalog.Core.Models;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 namespace ProductCatalog.Web.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -16,8 +18,21 @@ namespace ProductCatalog.Web.Areas.Customer.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var activeProducts = await _unitOfWork.Products.GetActiveProductsAsync();
+            var currentDate = DateTime.Now;
+            var activeProducts = await _unitOfWork.Products.FindAllAsync(p => currentDate >= p.StartDate && currentDate <= p.StartDate.AddDays(p.DurationInDays), new string[] { "Category" });
             return View(activeProducts);
+        }  
+        public async Task<IActionResult> FilterByCategory(string category)
+        {
+            var currentDate = DateTime.Now;
+            var activeProducts = await _unitOfWork.Products.FindAllAsync(p => currentDate >= p.StartDate && currentDate <= p.StartDate.AddDays(p.DurationInDays), new string[] { "Category" });
+
+            if (category == "all")
+                return View("Index", activeProducts);
+
+            var activeProductsFiltered = activeProducts.Where(p=>p.Category.Name== category);
+
+            return View("Index", activeProductsFiltered);
         }
 
         public async Task<IActionResult> Details(int id)
@@ -25,6 +40,8 @@ namespace ProductCatalog.Web.Areas.Customer.Controllers
             var product = await _unitOfWork.Products.FindAsync(p=>p.Id == id,new string[] {"Category"});
             return View(product);
         }
+
+
 
         public IActionResult Privacy()
         {
