@@ -29,6 +29,6 @@ The **Product Management System** is a web-based application built using ASP.NET
 ## Technologies Used
 - **Framework**: ASP.NET Core MVC (.net 8) 
 - **Architecture**: Unit of Work and Repository Pattern
-- **Database**: SQL Server
+- **Database**: SQL Server with EF as ORM
 - **Design**: Bootstrap 5
 - **Authentication and Authorization**: ASP.NET Identity
